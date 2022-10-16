@@ -1,0 +1,81 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:blueviolet;
+    /* animation: changeBg 10s linear infinite; */
+}
+@keyframes changeBg{
+    0%{
+        background-color: #78078c;
+    }
+    20%{
+        background-color: #3f0b8c;
+    }
+    40%{
+        background-color: #009688;
+    }
+    60%{
+        background-color: #0d8f68;
+    }
+    80%{
+        background-color: #b509a4;
+    }
+    100%{
+        background-color: #78078c;
+    }
+}
+.puzzle{
+    height:85%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: red; */
+}
+.container,.answer{
+    background-color: green;
+    height: 95%;
+    width:95%;
+    max-height: 500px;
+    max-width: 500px;
+    display: grid;
+    margin-inline: 0px 0px;
+    grid-template-columns: repeat(9,1fr);
+}
+button{
+    margin-top: 10px;
+}
+.answer{
+    margin-top: 10px;
+}
+input{
+    margin:0;
+    border:1px black solid;
+}
+input,p{
+    text-align: center;
+    font-size: 1.5rem;
+    width:100%;
+    height: 100%;
+}
+p{
+    padding-top: 25%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: black 1px solid;
+}
+.none{
+    display: none;
+}
+
+.grey{
+    background-color: #C0C0C0;
+}

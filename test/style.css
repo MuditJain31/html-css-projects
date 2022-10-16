@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+div.container{
+    height: 200px;
+    width:300px;
+    display: flex;
+    align-items: center;
+    background-color: crimson;
+}
+
+.parent{
+    width:100%;
+    height: 50px;
+    position: relative;
+    background-color: black;
+}
+
+.child{
+    height: 100%;
+    width: 75px;
+    position: absolute;
+    /* background-color: magenta; */
+    border-left: 5px mediumseagreen solid;
+    animation-name: slide;
+    animation-duration: 4s;
+    /* animation-fill-mode: both; */
+    /* animation-delay: 1s; */
+    animation-iteration-count: infinite;
+    /* animation-direction: alternate; */
+    animation-timing-function: steps(12);
+}    
+
+@keyframes slide{
+    /* to use left we have to set the position to absolute in order to make the animation work */
+    0%,100%{ 
+        left:0%;
+    }
+    40%,60%{
+        left:100%;
+    }
+    
+}
+

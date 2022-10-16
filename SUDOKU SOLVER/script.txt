@@ -1,0 +1,31 @@
+// let container = document.querySelector("#container");
+// let submit = document.querySelector("#Submit");
+
+// let values = [[]];
+
+// // for(let i=0;i<81;i++){
+// //     const inputElement = document.createElement('input');
+// //     inputElement.setAttribute('type','text');
+// //     inputElement.setAttribute('value','0');
+// //     container.appendChild(inputElement);
+// // }
+
+
+// // submit.addEventListener('click',()=>{
+// //     let vals = document.querySelectorAll('input');
+// //     for(let j=0;j<9;j++){
+// //         let input="";
+// //         for(let i=0;i<9;i++){
+// //             input = (vals[9*j+i].value) + input;
+// //         }
+// //         console.log(input);
+// //     }
+
+
+
+// // })
+
+
+submit.addEventListener("click",()=>{
+    container.classList.add("none");
+})
