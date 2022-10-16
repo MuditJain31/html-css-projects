@@ -79,3 +79,32 @@ p{
 .grey{
     background-color: #C0C0C0;
 }
+
+p.red{
+    background: transparent;
+    border:none;
+    animation: textColor 1.5s linear infinite;
+    margin-top: 2%;
+    padding: 8% 0 5% 0;
+}
+
+@keyframes textColor{
+    0%,100%{
+        color:#E10600;
+    }
+    50%{
+        color:#f72c1e;
+    }
+}
+
+button{
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    width:95%;
+    max-width: 500px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-left:0 ;
+    margin-right: 0;
+}
