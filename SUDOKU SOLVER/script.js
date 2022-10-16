@@ -1,3 +1,4 @@
+let wrong = document.querySelector(".wrong");
 let container = document.querySelector(".puzzle .container");
 let submit = document.querySelector("button");
 
@@ -25,6 +26,8 @@ function colorGrey(input){
         }
     }
 }
+
+
 
 
 
@@ -80,6 +83,7 @@ function checkForValidSudoku(values){
                 values[i][j] = 0;
                 if(isValid(i,j,temp,values)==false){
                     console.log(values[i][j]);
+                    inputs[9*i+j].style.color = "red";
                     return false;
                 }
                 values[i][j] = temp;
@@ -88,20 +92,13 @@ function checkForValidSudoku(values){
     }
     return true;
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-
-// 1. Create div
-createDivs();
-let inputs = document.querySelectorAll("input");
-colorGrey(inputs);
-
-
-// 2. Click hote hi saara data extract karna
-
-
+// --------------------| MAIN FUNCTION |-------------------------
 submit.addEventListener("click",()=>{
-
+    
+    // 3. extract data from all the input fields
     let values = [];
     let vals = document.querySelectorAll("input");
     
@@ -110,60 +107,77 @@ submit.addEventListener("click",()=>{
         for(let j=0;j<9;j++){
             if(vals[9*i+j].value==""){
                 tempArr.push(0);
+            }else if(isNaN(Number(vals[9*i+j].value)) || Number(vals[9*i+j].value)<=0 || Number(vals[9*i+j].value)>9){
+                //4. CHECKING IF THE INPUT VALUE IS VALID OR NOT
+                vals[9*i+j].style.color = "red";
+                if(wrong.hasChildNodes(".red")){
+                    return;
+                }
+                const pEle = document.createElement('p');
+                pEle.setAttribute('class','red');
+                pEle.innerText = "Wrong Value(s) Entered";
+                wrong.appendChild(pEle);
+                return;
             }else{
                 tempArr.push(Number(vals[9*i+j].value));
             }
         }
         values.push(tempArr);
     }
-
-    console.log(values);
-
-
-    // 3. Check for incorrect sudoku
-    let wrong = document.querySelector(".wrong");
+    
+    // 5. CHECK IF ALL THE ENTERED VALUES CAN FORM A VALID SUDOKU OR NOT
     if(checkForValidSudoku(values)==false){
         if(wrong.hasChildNodes(".red")){
             return;
         }
         const pEle = document.createElement('p');
         pEle.setAttribute('class','red');
-        pEle.innerText = "Wrong Values Entered";
+        pEle.innerText = "Wrong Value(s) Entered";
         wrong.appendChild(pEle);
         return;
     }
     
-    console.log(values);
     document.querySelector(".puzzle").removeChild(wrong);
-
-    // ye step baadme aayega jab inserted values sahi hongi
-
+    
+    
     container.classList.toggle("none");
     submit.classList.add("none");
-    console.log(values);
+
+
+    // 6. IF EVERYTHING IS GOING FINE TILL NOW THEN LET'S CREATE AN ANSWER TABLE
     solve(values);
-
-
+    
+    
     let count=1;
+    
     let x = setInterval(()=>{
-        count++;
-        console.log(values);
-        
-    document.querySelector(".answer").classList.toggle("none");
-    for(let i=0;i<9;i++){
-        for(let j=0;j<9;j++){
-            const inputElement = document.createElement('p');
-            inputElement.innerText = values[i][j];
-            document.querySelector(".answer").appendChild(inputElement);
+        count++;    
+        document.querySelector(".answer").classList.toggle("none");
+        for(let i=0;i<9;i++){
+            for(let j=0;j<9;j++){
+                const inputElement = document.createElement('p');
+                inputElement.innerText = values[i][j];
+                document.querySelector(".answer").appendChild(inputElement);
+            }
         }
-    }
-    let input = document.querySelectorAll("p"); 
-    colorGrey(input);
-    if(count>1)
-    clearInterval(x);
-    },1000)
+        let input = document.querySelectorAll("p"); 
+        colorGrey(input);
+        if(count>1)
+        clearInterval(x);
+    },100)
 })
 
 
-// 4. agar sahi hai to answer return karna 
-// 5. nahi to wrong answer likh ke vahi ruk jaana and phirse click ka option dena..
+
+// 1. Create div
+createDivs();
+let inputs = document.querySelectorAll("input");
+
+// 2. coloring boxes grey
+colorGrey(inputs);
+
+inputs.forEach(function(elem) {
+    elem.addEventListener("input", function() {
+        elem.style.color="black"
+    });
+});
